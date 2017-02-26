@@ -1,0 +1,17 @@
+version: '3'
+services:
+  web:
+    image: alvarolizama/phoenix
+    ports:
+     - "80:4000"
+    volumes:
+     - .:/app
+    depends_on:
+      - postgres
+    environment:
+      - MIX_ENV=${MIX_ENV:-dev}
+    working_dir: /app
+    command: mix phoenix.server
+
+  postgres:
+    image: postgres
